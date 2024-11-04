@@ -60,6 +60,11 @@ INSERT INTO employees (first_name, last_name, email, phone_number, salary, depar
 INSERT INTO locations (location_id, street_address, postal_code, city, state_province) VALUES
 (4, '789 Innovation Rd', '67890', 'DevCity', 'DC');
 
+-- Insert a department with no employees
+INSERT INTO departments (department_name, budget, location_id) VALUES
+('Legal', 50000, 3),
+('Research and Development', 75000, 4);
+
 -- 3 --
 SELECT employees.first_name, employees.last_name, employees.department_id, d.department_name
 FROM employees
@@ -78,17 +83,11 @@ JOIN departments d on d.department_id = employees.department_id
 JOIN locations l on l.location_id = d.location_id;
 
 -- 6 --
--- Insert a department with no employees
-INSERT INTO departments (department_name, budget, location_id) VALUES
-('Legal', 50000, 3),
-('Research and Development', 75000, 4);
-
--- 7 --
 SELECT departments.department_name, e.first_name, e.last_name
 FROM departments
 LEFT JOIN employees e on departments.department_id = e.department_id;
 
--- 8 --
+-- 7 --
 SELECT employees.first_name, employees.last_name, employees.department_id, d.department_name
 FROM employees
 LEFT JOIN departments d on employees.department_id = d.department_id;
